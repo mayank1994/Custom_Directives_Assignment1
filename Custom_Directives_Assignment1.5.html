@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<title>Custom_Directives_Assignment1.5</title>
+<!-- 
+4) Create custom directive using isolate scope.
+5) Write a directive to demonstrate 2-way data binding of parent scope property in
+isolated scopes. 
+-->
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script language="javascript" type="text/javascript">
+    var myangularapp = angular.module("myangularapp", []);
+    myangularapp.controller("mycontroller", function ($scope) {
+        $scope.talk = { name : 'Building modern web apps with ASP.NET5', duration : '60m'}
+    });
+    myangularapp.directive('bindcustomdirective', function() {
+        var directive = {
+            restrict : 'E', // restrict this directive to elements
+            scope : { talkinfo: '=' },
+            template: "<input type='text' ng-model='talkinfo.name'/>" +
+                "<div>{{talkinfo.name}} : {{talkinfo.duration}}</div> ",
+        };
+        return directive;
+    });
+</script>
+</head>
+<body ng-app="myangularapp" ng-controller="mycontroller">  
+<h2>2 Way Data Binding Isolated Scope</h2>
+    <bindcustomdirective talkdetails="talk"/>{{talk.name}}
+</body>
+</html>
+

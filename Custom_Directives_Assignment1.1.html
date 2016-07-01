@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<!--Create a Custom Directive that should be displayed as it is in a div when we write
+something in an input box.-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+<script type="text/javascript">
+
+angular.module('myApp')
+ .directive('myFullname', function () {
+    return {
+        template: 'Full Name: {{customer.firstName}} {{customer.lastName}}'
+    };
+});
+</script>
+
+
+<div ng-controller="customerController">
+  <div my-fullname></div>
+
+  
+</div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<!--  Create 3 custom directives for a pop up and restrict the use of that directive as a
+directive, comment, element, attribute.-->
+<head>
+	<title>Custom_Directives_Assignment1.2</title>
+	
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript">
+
+		var mod=angular.module("myAPP",[]);
+		mod.controller("CTR",function($scope){
+			$scope.func = function(){
+				alert('Pop Up Alert');
+			}
+		})
+		mod.directive("ngDir1",function(){   // Element Directive
+			return {
+				template : ' <button class="btn btn-success" ng-click="action()"> Element </button>  ',
+				restrict : 'E',
+				replace : 'false',
+				scope : { action:'&' }
+			}
+		});
+
+		mod.directive("ngDir2",function(){   // Attribute Directive 
+			return {
+				template : ' <button class="btn btn-info" ng-click="action()"> Attribute </button> ',
+				restrict : 'A',
+				replace : 'false',
+				scope : { action:'&' }
+			}
+		});
+
+		mod.directive("ngDir3",function(){	// Class Directive
+			return {
+				template : '<button class="btn btn-warning" ng-click="action()">Class </button>',
+				restrict : 'C',
+				replace : 'false',
+				scope : { action:'&' }
+			}
+		});
+		
+	
+		mod.directive("ngDir4",function(){   // Comment Directive
+			return { 
+				template : '<p> Comment Directive </p>',
+				restrict : 'M',
+				replace : 'false',
+				scope : {  }
+			}
+		});
+		
+	</script>
+</head>
+<body ng-app="myAPP">
+	<div ng-controller="CTR">
+	&nbsp	<ng-dir1 action="func()"> </ng-dir1> <br> <br><br>
+	&nbsp	<div ng-dir2 action="func()"> </div> <br> <br><br>
+	&nbsp	<div class="ng-dir3" action="func()"> </div> <br><br><br>
+	
+	
+	</div>
+
+</body>
+</html>
